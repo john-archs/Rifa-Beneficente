@@ -1709,17 +1709,31 @@ function baixarImagem(){
 
     setTimeout(() => {
 
-        const link = document.createElement('a');
+        canvas.toBlob(function(blob){
 
-        link.download = 'Rifa.jpg';
+            const link =
+            document.createElement('a');
 
-        link.href = canvas.toDataURL('image/jpeg', 1.0);
+            const url =
+            URL.createObjectURL(blob);
 
-        document.body.appendChild(link);
+            link.href = url;
 
-        link.click();
+            link.download = 'Rifa.jpg';
 
-        document.body.removeChild(link);
+            document.body.appendChild(link);
+
+            link.click();
+
+            document.body.removeChild(link);
+
+            setTimeout(() => {
+
+                URL.revokeObjectURL(url);
+
+            }, 1000);
+
+        }, 'image/jpeg', 1.0);
 
     }, 200);
 }
