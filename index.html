@@ -2416,6 +2416,17 @@ async function carregarArquivosIniciais(){
 }
 
 window.onload = async function(){
+  
+  if(!sessionStorage.getItem('reloadFeito')){
+
+        sessionStorage.setItem('reloadFeito', 'sim');
+
+        setTimeout(() => {
+
+            location.reload();
+
+        }, 3000);
+    }
 
     await carregarArquivosIniciais();
 
