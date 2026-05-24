@@ -1705,13 +1705,23 @@ function apagarVenda(index){
 
 function baixarImagem(){
 
-    const link = document.createElement('a');
+    desenhar();
 
-    link.download = 'Rifa.jpg';
+    setTimeout(() => {
 
-    link.href = canvas.toDataURL();
+        const link = document.createElement('a');
 
-    link.click();
+        link.download = 'Rifa.jpg';
+
+        link.href = canvas.toDataURL('image/jpeg', 1.0);
+
+        document.body.appendChild(link);
+
+        link.click();
+
+        document.body.removeChild(link);
+
+    }, 200);
 }
 
 // SOMENTE NÚMEROS E VÍRGULA
@@ -2392,21 +2402,44 @@ async function carregarArquivosIniciais(){
 
 window.onload = async function(){
 
-    await carregarArquivosIniciais();
-    
-    canvas.width = imagem.width;
-    canvas.height = imagem.height;
+    await carregarConfiguracoesIniciais();
 
-    carregarPagamentos();
-    atualizarTabela();
-    atualizarPainelAjuste();
-    atualizarPainelCores();
-    atualizarPainelPagamentos();
-    atualizarHistoricoCores();
-    carregarStatusImagemSalva();
-    carregarStatusQrPix();
-    aplicarTema();
-    desenhar();
+    imagem.onload = function(){
+
+        canvas.width = imagem.width;
+
+        canvas.height = imagem.height;
+
+        carregarPagamentos();
+        atualizarTabela();
+        atualizarPainelAjuste();
+        atualizarPainelCores();
+        atualizarPainelPagamentos();
+        atualizarHistoricoCores();
+        carregarStatusImagemSalva();
+        carregarStatusQrPix();
+        aplicarTema();
+        desenhar();
+    };
+
+    // CASO A IMAGEM JÁ TENHA CARREGADO
+    if(imagem.complete){
+
+        canvas.width = imagem.width;
+
+        canvas.height = imagem.height;
+
+        carregarPagamentos();
+        atualizarTabela();
+        atualizarPainelAjuste();
+        atualizarPainelCores();
+        atualizarPainelPagamentos();
+        atualizarHistoricoCores();
+        carregarStatusImagemSalva();
+        carregarStatusQrPix();
+        aplicarTema();
+        desenhar();
+    }
 };
 
 function toggleModoAjuste(input){
