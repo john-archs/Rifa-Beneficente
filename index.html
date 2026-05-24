@@ -2347,6 +2347,30 @@ async function carregarArquivosIniciais(){
             urlQr
         );
 
+        // ATUALIZA VARIÁVEIS EM MEMÓRIA
+        vendas =
+        dados.vendas || [];
+        
+        numerosMarcados =
+        dados.numerosMarcados || [];
+        
+        pagamentos =
+        dados.pagamentos || pagamentos;
+        
+        configCartela =
+        dados.configCartela || configCartela;
+        
+        historicoCores =
+        dados.historicoCores || [];
+        
+        tema =
+        dados.tema || tema;
+        
+        if(dados.qrPix){
+        
+            qrPix = dados.qrPix;
+        }
+
         // MARCA COMO INICIALIZADO
         localStorage.setItem(
             'inicializado',
