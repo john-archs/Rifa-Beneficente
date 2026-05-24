@@ -992,6 +992,7 @@ const canvas = document.getElementById('rifaCanvas');
 const ctx = canvas.getContext('2d');
 
 const imagem = new Image();
+imagem.crossOrigin = "anonymous";
 
 const imagemSalva =
 localStorage.getItem('imagemRifa');
