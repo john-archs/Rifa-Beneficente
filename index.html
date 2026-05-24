@@ -2339,6 +2339,7 @@ async function carregarArquivosIniciais(){
             'imagemRifa',
             urlImagem
         );
+        imagem.src = urlImagem;
 
         // QR PIX
         localStorage.setItem(
@@ -2368,6 +2369,7 @@ async function carregarArquivosIniciais(){
 window.onload = async function(){
 
     await carregarArquivosIniciais();
+    
     canvas.width = imagem.width;
     canvas.height = imagem.height;
 
