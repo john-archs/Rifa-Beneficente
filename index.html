@@ -2551,17 +2551,17 @@ function baixarArquivo(nome, conteudo, tipo){
 function exportarConfiguracoes(){
 
     const dados = {
-
-        vendas,
-        numerosMarcados,
-        pagamentos,
-        configCartela,
-        historicoCores,
-        tema,
-        imagemRifa:
-        localStorage.getItem('imagemRifa')
-
-    };
+          vendas,
+          numerosMarcados,
+          pagamentos,
+          configCartela,
+          historicoCores,
+          tema,
+          imagemRifa:
+          localStorage.getItem('imagemRifa'),
+          qrPix:
+          localStorage.getItem('qrPix')
+      };
 
     const json = JSON.stringify(
         dados,
@@ -2627,6 +2627,17 @@ function importarConfiguracoes(event){
 
                 imagem.src =
                 dados.imagemRifa;
+            }
+            
+            // QR PIX
+            if(dados.qrPix){
+            
+                localStorage.setItem(
+                    'qrPix',
+                    dados.qrPix
+                );
+            
+                qrPix = dados.qrPix;
             }
 
             // SALVA
@@ -2853,4 +2864,4 @@ function copiarPix(){
         </div>
     </div>
 </body>
-</html>
+   </html>
